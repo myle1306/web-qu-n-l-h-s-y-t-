@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tổng quan</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #f5f5f5;
+    }
+    .sidebar {
+      background-color: #0a2a53;
+      min-height: 100vh;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+    .sidebar a:hover {
+      background-color: #183f73;
+    }
+    .active {
+      background-color: #0f3e74;
+    }
+    .content {
+      padding: 20px;
+    }
+    .card-box {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .card-small {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .status-paid {
+      color: white;
+      background-color: #28a745;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+    canvas {
+      width: 100% !important;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Custom search bar style */
+    .custom-search {
+      background-color: #08254b;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      font-size: 14px;
+      padding: 8px 12px;
+    }
+    .custom-search::placeholder {
+      color: #cccccc;
+    }
+    .custom-search:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-2 sidebar p-0">
+      <h4 class="text-center py-3">HỒ SƠ Y TẾ</h4>
+      <!-- Thanh tìm kiếm -->
+      <div class="px-3 mb-3">
+        <input type="text" class="form-control custom-search" placeholder="Tìm kiếm">
+      </div>
+      <a href="tongquan.html" class="nav-item">📄 Tổng quan</a>
+      <a href="hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
+      <a href="lichkham.html" class="nav-item">📅 Lịch khám</a>
+      <a href="donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
+      <a href="tracuu.html" class="nav-item">🔍 Tra cứu</a>
+      <a href="/setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
+      <a href="quanlynguoidung.html" class="nav-item"> Quản lý người dùng</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-10 content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4><strong>Tổng quan</strong></h4>
+        <div>
+          <button class="btn btn-success btn-sm">Update Now!</button>
+          <span class="ms-3">🔔</span>
+          <img src="https://via.placeholder.com/30" class="rounded-circle ms-2" alt="avatar">
+          <span class="ms-1">Ngọc Anh</span>
+        </div>
+      </div>
+
+      <!-- Top Cards -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="card-small text-center border">
+            <div class="card-title text-danger">4</div>
+            <p>Lịch khám hôm nay</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-small text-center border">
+            <div class="card-title text-danger">160</div>
+            <p>Bệnh nhân mới</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-small text-center border">
+            <div class="card-title text-danger">160</div>
+            <p>Phản hồi</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="row mb-3">
+        <div class="col-md-8">
+          <div class="card-box">
+            <canvas id="barChart" height="150"></canvas>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-box text-white text-center" style="background-color: #1f4cd0;">
+            <h1>84%</h1>
+            <p>Doanh thu cả khoa</p>
+            <canvas id="lineChart" height="100" style="background-color: transparent;"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Boxes -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="card-small bg-warning text-white text-center">
+            <p>Số ca viêm dạ dày</p>
+            <h5>900</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-small bg-primary text-white text-center">
+            <p>Số ca điều trị khỏi</p>
+            <h5>100</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-small bg-success text-white text-center">
+            <p>Tổng số bệnh nhân</p>
+            <h5>5.020</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hóa đơn gần đây -->
+      <div class="card-box">
+        <h6><strong>Hóa đơn gần đây</strong></h6>
+        <p>Tổng hóa đơn đã thanh toán 240, chưa thanh toán 150</p>
+        <table class="table table-bordered table-sm">
+          <thead>
+            <tr>
+              <th>Hóa đơn</th>
+              <th>Tên bệnh nhân</th>
+              <th>Trạng thái</th>
+              <th>Hạn</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JW0012345</td>
+              <td>Nhật Hạ</td>
+              <td><span class="status-paid">Đã thanh toán</span></td>
+              <td>10/4/2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart Scripts -->
+<script>
+  const ctxBar = document.getElementById('barChart').getContext('2d');
+  const barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['T2','T3','T4','T5','T6','T7','CN'],
+      datasets: [
+        {
+          label: 'Khám',
+          data: [12, 19, 3, 5, 2, 3, 7],
+          backgroundColor: '#1f4cd0'
+        },
+        {
+          label: 'Điều trị',
+          data: [2, 3, 20, 5, 1, 4, 9],
+          backgroundColor: '#f56954'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'top' }
+      }
+    }
+  });
+
+  const ctxLine = document.getElementById('lineChart').getContext('2d');
+  const lineChart = new Chart(ctxLine, {
+    type: 'line',
+    data: {
+      labels: ['T1','T2','T3','T4','T5'],
+      datasets: [{
+        label: 'Doanh thu',
+        data: [50, 60, 70, 60, 84],
+        borderColor: '#fff',
+        backgroundColor: 'transparent',
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: false },
+        y: { display: false }
+      }
+    }
+  });
+</script>
+</body>
+</html>

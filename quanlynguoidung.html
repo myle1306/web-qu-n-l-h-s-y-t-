@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý người dùng</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+    .sidebar {
+      width: 240px;
+      background-color: #0f2c5c;
+      color: white;
+      padding: 20px;
+    }
+    .sidebar h1 {
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+    .nav-item {
+      display: block;
+      margin: 16px 0;
+      color: white;
+      text-decoration: none;
+    }
+    .nav-item:hover {
+      text-decoration: underline;
+    }
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .content {
+      padding: 20px;
+      overflow-y: auto;
+    }
+    h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+      background-color: #0f2c5c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    .actions button {
+      margin-right: 6px;
+      background: #0f2c5c;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h1>QUẢN LÝ</h1>
+    <a href="#" class="nav-item">👤 Người dùng</a>
+    <a href="#" class="nav-item">📄 Báo cáo</a>
+  </div>
+
+  <div class="main-container">
+    <div class="topbar">
+      <div><strong>Admin</strong></div>
+      <div>🔔 Ngọc Anh</div>
+    </div>
+
+    <div class="content">
+      <h2>Danh sách người dùng</h2>
+      <div>
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Tên người dùng" required>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <button onclick="addUser()">Thêm người dùng</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="user-table">
+          <!-- Dữ liệu sẽ được render tại đây -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let users = [];
+  
+    // Gọi API để lấy danh sách người dùng khi trang load
+    function fetchUsers() {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then(res => res.json())
+        .then(data => {
+          // Chỉ lấy name và email để hiển thị
+          users = data.map(user => ({
+            name: user.name,
+            email: user.email
+          }));
+          renderUsers();
+        })
+        .catch(err => {
+          console.error("Lỗi khi lấy danh sách người dùng:", err);
+        });
+    }
+  
+    function renderUsers() {
+      const tbody = document.getElementById("user-table");
+      tbody.innerHTML = "";
+      users.forEach((user, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            <td class="actions">
+              <button onclick="editUser(${index})">Sửa</button>
+              <button onclick="deleteUser(${index})">Xóa</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+  
+    function addUser() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      if (name && email) {
+        fetch("https://jsonplaceholder.typicode.com/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email })
+        })
+        .then(res => res.json())
+        .then(data => {
+          // Sau khi thêm xong thì thêm vào mảng hiển thị
+          users.push({ name: data.name, email: data.email });
+          renderUsers();
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+        })
+        .catch(err => {
+          console.error("Lỗi khi thêm người dùng:", err);
+        });
+      }
+    }
+  
+    function deleteUser(index) {
+      users.splice(index, 1);
+      renderUsers();
+    }
+  
+    function editUser(index) {
+      const user = users[index];
+      const newName = prompt("Tên mới:", user.name);
+      const newEmail = prompt("Email mới:", user.email);
+      if (newName && newEmail) {
+        users[index] = { name: newName, email: newEmail };
+        renderUsers();
+      }
+    }
+  
+    // Gọi API khi trang load
+    fetchUsers();
+  </script>
+  
+</body>
+</html>

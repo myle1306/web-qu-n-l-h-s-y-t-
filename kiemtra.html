@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đơn thuốc</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #0f2c5c;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h1 {
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .search {
+      background-color: #0d234b;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .search input {
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      width: 100%;
+      padding: 5px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .nav-item:hover {
+      text-decoration: underline;
+    }
+
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .topbar .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar .update-btn {
+      background: #b0f5c3;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .topbar .avatar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .content {
+      padding: 20px;
+      flex: 1;
+      overflow: auto;
+    }
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .info div {
+      margin: 6px 0;
+    }
+
+    .edit-btn {
+      background: #ccc;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      float: right;
+      cursor: not-allowed;
+    }
+
+    table {
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      border: 2px solid #0099ff;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f0f8ff;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h1>HỒ SƠ Y TẾ</h1>
+    <div class="search">
+      <input type="text" placeholder="Tìm kiếm">
+    </div>
+    <a href="tongquan.html" class="nav-item">📄 Tổng quan</a>
+      <a href="hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
+      <a href="lichkham.html" class="nav-item">📅 Lịch khám</a>
+      <a href="donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
+      <a href="../tracuu.html" class="nav-item">🔍 Tra cứu</a>
+      <a href="/setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
+      <a href="quanlynguoidung.html" class="nav-item"> Quản lý người dùng</a>
+  </div>
+
+  <div class="main-container">
+    <div class="topbar">
+      <div class="left">
+        <span>☰</span>
+        <button class="update-btn">Update Now !</button>
+      </div>
+      <div class="avatar">
+        <span>🔔</span>
+        <span>Ngọc Anh</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>Đơn thuốc</h2>
+
+      <div class="info">
+        <div><strong>Tên bệnh nhân:</strong> Nhật Hạ</div>
+        <div><strong>ID:</strong> Ocb1234</div>
+        <div><strong>Chuẩn đoán:</strong> Tăng huyết áp</div>
+        <button class="edit-btn">Sửa đơn thuốc</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mã thuốc</th>
+            <th>Tên thuốc</th>
+            <th>Đơn vị</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ovcbhv1245</td>
+            <td>hydrochlorothiazide</td>
+            <td>Viên</td>
+            <td>30</td>
+            <td>5000 / 1 viên</td>
+            <td>uống 1 viên vào buổi sáng</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

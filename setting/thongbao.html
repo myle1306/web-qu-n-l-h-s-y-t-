@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông báo</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+      body {
+      background-color: #f5f5f5;
+    }
+    .sidebar {
+      background-color: #0a2a53;
+      min-height: 100vh;
+      color: white;
+    }
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+    }
+    .sidebar a:hover {
+      background-color: #183f73;
+    }
+    .active {
+      background-color: #0f3e74;
+    }
+    .content {
+      padding: 20px;
+    }
+    .card-box {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .setting-list i {
+      margin-right: 10px;
+    }
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    .setting-item:hover {
+      background-color: #f9f9f9;
+      cursor: pointer;
+    }
+    .setting-item i {
+      color: gray;
+    }
+    button:disabled {
+      background-color: #ccc !important;
+    }
+    .sidebar input.form-control {
+      background-color: #0a2a53;
+      color: white;
+      border: 1px solid #ffffff55;
+      border-radius: 6px;
+    }
+    .sidebar input::placeholder {
+      color: #ccc;
+    }
+    .sidebar input {
+      width: calc(100% - 40px);
+      margin: 0 20px 15px;
+      border-radius: 6px;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    a:hover {
+      color: yourHoverColor;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar p-0">
+        <h4 class="text-center py-3">HỒ SƠ Y TẾ</h4>
+        <input class="form-control form-control-sm mx-3 mb-3" type="text" placeholder="Tìm kiếm">
+        <a href="../tongquan.html" class="nav-item">📄 Tổng quan</a>
+        <a href="../hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
+        <a href="../lichkham.html" class="nav-item">📅 Lịch khám</a>
+        <a href="../donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
+        <a href="../tracuu.html" class="nav-item">🔍 Tra cứu</a>
+        <a href="..//setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
+        <a href="../quanlynguoidung.html" class="nav-item"> Quản lý người dùng</a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-10 content">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3><strong>Cài đặt</strong></h3>
+          <div>
+            <button class="btn btn-success btn-sm">Update Now!</button>
+            <span class="ms-3">🔔</span>
+            <img src="https://via.placeholder.com/30" class="rounded-circle ms-2" alt="avatar">
+            <span class="ms-1">Ngọc Anh</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Left Menu -->
+          <div class="col-md-4">
+            <div class="card-box">
+              <a href="/setting/setting.html"class="fw-bold"></a>👤 Thông tin cá nhân</a><br>
+              <a href="/setting/account.html"class="fw-bold"></a>⚙️ Tài khoản</a><br>
+              <a href="/setting/baomat.html"class="fw-bold"></a>🛡️ Quyền truy cập và bảo mật</a><br>
+              <a href="/setting/thongbao.html" class="fw-bold">🔔 Thông báo</a><br>
+              <a href="/setting/lienhe.html">📞 Hỗ trợ và liên hệ</a><br>
+              <a href="#">🚪 Đăng xuất</a><br>
+            </div>
+          </div>
+
+          <!-- Right Content -->
+          <div class="col-md-8">
+            <div class="card-box">
+              <h5><strong>Thông báo</strong></h5>
+              <div class="setting-item">
+                <span>Có lịch hẹn mới</span>
+                <i class="bi bi-chevron-right"></i>
+              </div>
+              <div class="setting-item">
+                <span>Bệnh nhân huỷ lịch</span>
+                <i class="bi bi-chevron-right"></i>
+              </div>
+              <div class="setting-item">
+                <span>Hồ sơ cần ký duyệt</span>
+                <i class="bi bi-chevron-right"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
