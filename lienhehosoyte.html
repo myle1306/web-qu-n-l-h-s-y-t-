@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liên hệ | Hồ sơ y tế</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Contact Section -->
+    <section class="bg-blue-50 py-10 px-6 md:px-20">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
+        <!-- Left: Info -->
+        <div>
+          <h4 class="text-gray-700 text-lg font-semibold mb-2">
+            Kết nối với chúng tôi
+          </h4>
+          <h2 class="text-2xl md:text-3xl font-bold mb-6">
+            Chúng tôi luôn sẵn sàng hỗ trợ bạn
+          </h2>
+          <p class="mb-2">
+            <strong>Email:</strong>
+            <a
+              href="mailto:lena272005@gmail.com"
+              class="text-blue-600 underline"
+              >lenga272005@gmail.com</a
+            >
+          </p>
+          <p class="mb-2"><strong>Location:</strong> Đà Nẵng, DN, VN</p>
+          <p class="font-semibold mt-4 mb-2">Hours:</p>
+          <ul class="text-sm text-gray-700 space-y-1">
+            <li>Monday – Friday: 9:00am – 10:00pm</li>
+            <li>Saturday: 9:00am – 12:00pm</li>
+            <li>Sunday: 9:00am – 12:00pm</li>
+          </ul>
+        </div>
+
+        <!-- Right: Form -->
+        <div>
+          <form
+            action="https://formspree.io/f/your-form-id"
+            method="POST"
+            class="bg-white p-6 rounded-xl shadow space-y-4"
+          >
+            <div>
+              <label class="block font-semibold mb-1">Tên *</label>
+              <input
+                type="text"
+                name="name"
+                required
+                class="w-full border rounded px-4 py-2"
+              />
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Email *</label>
+              <input
+                type="email"
+                name="email"
+                required
+                class="w-full border rounded px-4 py-2"
+              />
+            </div>
+            <div>
+              <label for="phone" class="block font-semibold mb-1"
+                >Số điện thoại *</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                pattern="^0[0-9]{9}$"
+                required
+                class="w-full border rounded px-4 py-2"
+                placeholder="Ví dụ: 0912345678"
+              />
+            </div>
+            <div>
+              <label class="block font-semibold mb-1">Lời nhắn *</label>
+              <textarea
+                name="message"
+                rows="4"
+                required
+                class="w-full border rounded px-4 py-2"
+              ></textarea>
+            </div>
+            <div class="flex items-start space-x-2">
+              <input type="checkbox" required />
+              <span class="text-sm"
+                >Tôi đồng ý chia sẻ thông tin với trang này và hiểu rõ các điều
+                khoản bảo mật.</span
+              >
+            </div>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            >
+              Gửi liên hệ
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8 px-6 md:px-20">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Hồ sơ y tế</h3>
+          <div class="space-x-4 text-sm">
+            <a href="#">Đặt lịch hẹn</a>
+            <a href="#">Hoàn tất tiếp nhận</a>
+            <a href="#">Chính sách bảo mật</a>
+          </div>
+        </div>
+        <div class="flex flex-col md:items-end text-sm space-y-2">
+          <p>Copyright 2025 © Hồ sơ y tế online</p>
+          <p>
+            Kết nối với chúng tôi:
+            <a href="#" class="inline-block ml-2">📘</a>
+            <a href="#" class="inline-block ml-2">▶️</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
