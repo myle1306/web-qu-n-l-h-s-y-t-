@@ -1,293 +1,341 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hồ sơ bệnh nhân - Lịch Khám</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 240px;
-      background-color: #0f2c5c;
-      color: white;
-      padding: 20px;
-    }
-
-    .sidebar h1 {
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar .search {
-      background-color: #0d234b;
-      padding: 8px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar .search input {
-      background: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      width: 100%;
-      padding: 5px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 16px 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .nav-item:hover {
-      text-decoration: underline;
-    }
-
-    /* Main layout */
-    .main-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .topbar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .topbar .update-btn {
-      background: #b0f5c3;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .topbar .avatar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .content {
-      display: flex;
-      padding: 20px;
-      overflow: auto;
-    }
-
-    .main {
-      flex: 1;
-    }
-
-    .main h2 {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
-
-    /* Tìm kiếm và lọc */
-    .top-filter {
-        .top-filter {
-  display: flex;
-  justify-content: center; /* căn giữa các nút */
-  gap: 20px; /* khoảng cách giữa các nút */
-  margin-bottom: 20px;
-}
-    }
-
-    .search-input {
-      display: flex;
-      align-items: center;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px 12px;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .search-input .search-icon {
-      margin-right: 8px;
-      font-size: 16px;
-      color: #999;
-    }
-
-    .search-input input {
-      border: none;
-      outline: none;
-      font-size: 14px;
-      width: 100%;
-    }
-
-    .date-filter {
-      display: flex;
-      gap: 8px;
-    }
-
-    .tab-btn {
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 14px;
-    }
-
-    .tab-btn:hover {
-      background-color: #e0e0e0;
-    }
-
-    .tab-btn.active {
-      background-color: #007bff;
-      color: white;
-      border-color: #007bff;
-    }
-
-    table {
-      width: 100%;
-      background: white;
-      border-radius: 8px;
-      border-collapse: collapse;
-      overflow: hidden;
-      font-size: 14px;
-    }
-    .table-container {
-  margin-top: 20px; /* hoặc giá trị khác như 24px, 32px tùy khoảng cách bạn muốn */
-}
-.table-wrapper {
-    border: 2px solid #f0f0f0;         /* đổi sang viền trắng */
-  border-radius: 10px;             /* bo tròn góc */
-  padding: 10px;                   /* khoảng cách giữa bảng và viền */
-  margin-top: 20px;                /* đẩy bảng xuống dưới nút lọc */
-  background-color: white;         /* nền trắng */
-  overflow-x: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-
-    .view-btn {
-      background-color: #e0e0e0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .view-btn:hover {
-      background-color: #ccc;
-    }
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Lịch khám</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #0a2a53;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        .sidebar a:hover, .sidebar .active {
+            background-color: #183f73;
+        }
+        .custom-search {
+            background-color: #08254b;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 12px;
+        }
+        .custom-search::placeholder {
+            color: #ccc;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .appointment-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .appointment-filter button {
+            margin-right: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Adjust margin for better centering */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar p-0">
+            <h4 class="text-center py-3">HỒ SƠ Y TẾ</h4>
+            <div class="px-3 mb-3">
+                <input type="text" class="form-control custom-search" placeholder="Tìm kiếm">
+            </div>
+            <a href="tongquan.html" id="tongquanLink">Tổng quan</a>
+            <a href="hosobenhnhan.html">Hồ sơ bệnh nhân</a>
+            <a href="hosobacsi.html">Hồ sơ bác sĩ</a>
+            <a href="lichkham.html" class="active">Lịch khám</a>
+            <a href="donthuoc.html">Đơn thuốc</a>
+            <a href="tracuu.html">Tra cứu</a>
+            <a href="#">Cài đặt</a>
+        </div>
 
-  <div class="sidebar">
-    <h1>HỒ SƠ Y TẾ</h1>
-    <div class="search">
-      <input type="text" placeholder="Tìm kiếm">
+        <div class="col-md-10 main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><strong>Lịch khám</strong></h4>
+                <div>
+                    <button class="btn btn-success btn-sm">Update Now!</button>
+                    <span class="ms-3">🔔</span>
+                    <img src="https://teddy.vn/wp-content/uploads/2024/12/babythree-v1-2.jpg" class="rounded-circle ms-2" alt="avatar" width="20px">
+                    <span class="ms-1">Ngoc Anh</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="appointment-filter">
+                    <button class="btn btn-outline-secondary btn-sm">Hôm nay</button>
+                    <button class="btn btn-outline-secondary btn-sm">Ngày</button>
+                    <button class="btn btn-outline-secondary btn-sm">Tuần</button>
+                    <button class="btn btn-primary btn-sm" id="openModalBtn">Tạo lịch khám</button>
+                </div>
+            </div>
+
+            <div class="appointment-table p-3">
+                <table class="table table-bordered table-hover" id="appointmentTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tên</th>
+                            <th>ID</th>
+                            <th>Khoa</th>
+                            <th>Bác sĩ</th>
+                            <th>Ngày khám</th>
+                            <th>Giờ khám</th>
+                            <th>Triệu chứng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <a href="tongquan.html" class="nav-item">📄 Tổng quan</a>
-      <a href="hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
-      <a href="lichkham.html" class="nav-item">📅 Lịch khám</a>
-      <a href="donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
-      <a href="../tracuu.html" class="nav-item">🔍 Tra cứu</a>
-      <a href="/setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
-  </div>
-
-  <div class="main-container">
-    <div class="topbar">
-      <div class="left">
-        <span>☰</span>
-        <button class="update-btn">Update Now !</button>
-      </div>
-      <div class="avatar">
-        <span>🔔</span>
-        <span>Ngọc Anh</span>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="main">
-        <h2>Lịch Khám</h2>
-
-        <!-- Ô tìm kiếm và nút lọc -->
-        <div class="top-filter">
-            <button class="tab-btn active">Hôm nay</button>
-            <button class="tab-btn">Ngày</button>
-            <button class="tab-btn">Tuần</button>
-          </div>
-        <!-- Bảng dữ liệu -->
-        <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Tên</th>
-              <th>ID</th>
-              <th>Số điện thoại</th>
-              <th>Giờ khám</th>
-              <th>Triệu chứng</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nhật Hạ</td>
-              <td>Ocb1234</td>
-              <td>1234567891</td>
-              <td>9h</td>
-              <td>Đau bụng vùng bên trái ở giữa</td>
-              <td><a href="kiemtra.html" class="view-btn">Bắt đầu khám</a></td>
-            </tr>            
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
-  <script>
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  </script>
 
+<div id="createAppointmentModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h4>Tạo/Sửa lịch khám</h4>
+        <form id="appointmentForm">
+            <input type="hidden" id="appointmentId">
+            <div class="mb-3">
+                <label for="patientName" class="form-label">Tên bệnh nhân</label>
+                <input type="text" class="form-control" id="patientName" required>
+            </div>
+            <div class="mb-3">
+                <label for="department" class="form-label">Khoa</label>
+                <select class="form-select" id="department" required>
+                    <option value="">Chọn khoa</option>
+                    <option value="Khoa 1">Khoa 1</option>
+                    <option value="Khoa 2">Khoa 2</option>
+                    <option value="Khoa 3">Khoa 3</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="doctor" class="form-label">Bác sĩ</label>
+                <select class="form-select" id="doctor" required>
+                    <option value="">Chọn bác sĩ</option>
+                    <option value="Bác sĩ A">Bác sĩ A</option>
+                    <option value="Bác sĩ B">Bác sĩ B</option>
+                    <option value="Bác sĩ C">Bác sĩ C</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="appointmentDate" class="form-label">Ngày khám</label>
+                <input type="date" class="form-control" id="appointmentDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="appointmentTime" class="form-label">Giờ khám</label>
+                <input type="time" class="form-control" id="appointmentTime" required>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                <input type="tel" class="form-control" id="phoneNumber">
+            </div>
+            <div class="mb-3">
+                <label for="symptoms" class="form-label">Triệu chứng</label>
+                <textarea class="form-control" id="symptoms" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu lịch khám</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const modal = document.getElementById("createAppointmentModal");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.querySelector(".close-button");
+    const appointmentForm = document.getElementById("appointmentForm");
+    const appointmentTableBody = document.querySelector("#appointmentTable tbody");
+    const appointmentIdInput = document.getElementById("appointmentId");
+
+    // Function to generate a unique ID
+    function generateId() {
+        return Math.random().toString(36).substring(2, 15);
+    }
+
+    // Function to save/update appointment to local storage
+    function saveAppointment(appointment) {
+        let appointments = localStorage.getItem('appointments');
+        appointments = appointments ? JSON.parse(appointments) : [];
+        const existingIndex = appointments.findIndex(appt => appt.id === appointment.id);
+        if (existingIndex > -1) {
+            appointments[existingIndex] = appointment; // Update existing
+        } else {
+            appointments.push(appointment); // Add new
+        }
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+    }
+
+    // Function to get all appointments from local storage
+    function getAppointments() {
+        const appointments = localStorage.getItem('appointments');
+        return appointments ? JSON.parse(appointments) : [];
+    }
+
+    // Function to display appointments on the table
+    function displayAppointments() {
+        appointmentTableBody.innerHTML = ''; // Clear existing rows
+        const appointments = getAppointments();
+        appointments.forEach(appointment => {
+            const row = appointmentTableBody.insertRow();
+            row.insertCell().textContent = appointment.patientName;
+            row.insertCell().textContent = appointment.id;
+            row.insertCell().textContent = appointment.department;
+            row.insertCell().textContent = appointment.doctor;
+            row.insertCell().textContent = appointment.appointmentDate;
+            row.insertCell().textContent = appointment.appointmentTime;
+            row.insertCell().textContent = appointment.symptoms || '';
+
+            const actionsCell = row.insertCell();
+            actionsCell.classList.add('text-center');
+
+            const editButton = document.createElement('button');
+            editButton.classList.add('btn', 'btn-sm', 'btn-outline-primary', 'me-2');
+            editButton.textContent = 'Sửa';
+            editButton.addEventListener('click', () => editAppointment(appointment.id));
+            actionsCell.appendChild(editButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('btn', 'btn-sm', 'btn-outline-danger');
+            deleteButton.textContent = 'Xóa';
+            deleteButton.addEventListener('click', () => deleteAppointment(appointment.id));
+            actionsCell.appendChild(deleteButton);
+
+            const detailButton = document.createElement('button');
+            detailButton.classList.add('btn', 'btn-sm', 'btn-outline-info', 'ms-2');
+            detailButton.textContent = 'Xem chi tiết';
+            detailButton.addEventListener('click', () => viewAppointmentDetails(appointment));
+            actionsCell.appendChild(detailButton);
+        });
+    }
+
+    // Function to populate the modal form for editing
+    function editAppointment(id) {
+        const appointment = getAppointments().find(appt => appt.id === id);
+        if (appointment) {
+            appointmentIdInput.value = appointment.id;
+            document.getElementById('patientName').value = appointment.patientName;
+            document.getElementById('department').value = appointment.department;
+            document.getElementById('doctor').value = appointment.doctor;
+            document.getElementById('appointmentDate').value = appointment.appointmentDate;
+            document.getElementById('appointmentTime').value = appointment.appointmentTime;
+            document.getElementById('phoneNumber').value = appointment.phoneNumber || '';
+            document.getElementById('symptoms').value = appointment.symptoms || '';
+            modal.style.display = "block";
+        }
+    }
+
+    // Function to delete an appointment
+    function deleteAppointment(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa lịch khám này?')) {
+            let appointments = getAppointments().filter(appt => appt.id !== id);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+            displayAppointments();
+        }
+    }
+
+    // Function to view appointment details (you can customize this)
+    function viewAppointmentDetails(appointment) {
+        alert(`Chi tiết lịch khám:\nTên bệnh nhân: ${appointment.patientName}\nID: ${appointment.id}\nKhoa: ${appointment.department}\nBác sĩ: ${appointment.doctor}\nNgày khám: ${appointment.appointmentDate}\nGiờ khám: ${appointment.appointmentTime}\nSố điện thoại: ${appointment.phoneNumber || 'Không có'}\nTriệu chứng: ${appointment.symptoms || 'Không có'}`);
+    }
+
+    // Event listeners for modal
+    openModalBtn.onclick = function() {
+        modal.querySelector('h4').textContent = 'Tạo lịch khám mới';
+        appointmentForm.reset();
+        appointmentIdInput.value = ''; // Clear ID for adding new
+        modal.style.display = "block";
+    }
+
+    closeModalBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Event listener for form submission (add or edit)
+    appointmentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const id = appointmentIdInput.value || generateId();
+        const patientName = document.getElementById('patientName').value;
+        const department = document.getElementById('department').value;
+        const doctor = document.getElementById('doctor').value;
+        const appointmentDate = document.getElementById('appointmentDate').value;
+        const appointmentTime = document.getElementById('appointmentTime').value;
+        const phoneNumber = document.getElementById('phoneNumber').value;
+        const symptoms = document.getElementById('symptoms').value;
+
+        const newAppointment = {
+            id: id,
+            patientName: patientName,
+            department: department,
+            doctor: doctor,
+            appointmentDate: appointmentDate,
+            appointmentTime: appointmentTime,
+            phoneNumber: phoneNumber,
+            symptoms: symptoms
+        };
+
+        saveAppointment(newAppointment);
+        displayAppointments(); // Update the table on the current page
+        modal.style.display = "none"; // Close the modal
+        appointmentForm.reset(); // Reset the form
+    });
+
+    // Load and display appointments on page load
+    displayAppointments();
+</script>
 </body>
 </html>

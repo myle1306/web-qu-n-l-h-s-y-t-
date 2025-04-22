@@ -1,285 +1,319 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hồ sơ bệnh nhân - Đơn thuốc</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 240px;
-      background-color: #0f2c5c;
-      color: white;
-      padding: 20px;
-    }
-
-    .sidebar h1 {
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar .search {
-      background-color: #0d234b;
-      padding: 8px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar .search input {
-      background: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      width: 100%;
-      padding: 5px;
-    }
-
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 16px 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .nav-item:hover {
-      text-decoration: underline;
-    }
-
-    /* Main layout */
-    .main-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .topbar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .topbar .update-btn {
-      background: #b0f5c3;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .topbar .avatar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .content {
-      display: flex;
-      padding: 20px;
-      overflow: auto;
-    }
-
-    .main {
-      flex: 1;
-    }
-
-    .main h2 {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
-
-    /* Tìm kiếm và lọc */
-    .top-filter {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .search-input {
-      display: flex;
-      align-items: center;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px 12px;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .search-input .search-icon {
-      margin-right: 8px;
-      font-size: 16px;
-      color: #999;
-    }
-
-    .search-input input {
-      border: none;
-      outline: none;
-      font-size: 14px;
-      width: 100%;
-    }
-
-    .date-filter {
-      display: flex;
-      gap: 8px;
-    }
-
-    .tab-btn {
-      background-color: #f4f4f4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 14px;
-    }
-
-    .tab-btn:hover {
-      background-color: #e0e0e0;
-    }
-
-    .tab-btn.active {
-      background-color: #007bff;
-      color: white;
-      border-color: #007bff;
-    }
-
-    table {
-      width: 100%;
-      background: white;
-      border-radius: 8px;
-      border-collapse: collapse;
-      overflow: hidden;
-      font-size: 14px;
-    }
-
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-
-    .view-btn {
-      background-color: #e0e0e0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .view-btn:hover {
-      background-color: #ccc;
-    }
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Đơn thuốc</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #0a2a53;
+            min-height: 100vh;
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+        }
+        .sidebar a:hover, .sidebar .active {
+            background-color: #183f73;
+        }
+        .custom-search {
+            background-color: #08254b;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 12px;
+        }
+        .custom-search::placeholder {
+            color: #ccc;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .prescription-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-  <div class="sidebar">
-    <h1>HỒ SƠ Y TẾ</h1>
-    <div class="search">
-      <input type="text" placeholder="Tìm kiếm">
-    </div>
-    <a href="tongquan.html" class="nav-item">📄 Tổng quan</a>
-      <a href="hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
-      <a href="lichkham.html" class="nav-item">📅 Lịch khám</a>
-      <a href="donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
-      <a href="tracuu.html" class="nav-item">🔍 Tra cứu</a>
-      <a href="/setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
-      <a href="quanlynguoidung.html" class="nav-item"> Quản lý người dùng</a>
-  </div>
-
-  <div class="main-container">
-    <div class="topbar">
-      <div class="left">
-        <span>☰</span>
-        <button class="update-btn">Update Now !</button>
-      </div>
-      <div class="avatar">
-        <span>🔔</span>
-        <span>Ngọc Anh</span>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="main">
-        <h2>Đơn thuốc</h2>
-
-        <!-- Ô tìm kiếm và nút lọc -->
-        <div class="top-filter">
-          <div class="search-input">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Tìm kiếm theo mã đơn thuốc">
-          </div>
-          <div class="date-filter">
-            <button class="tab-btn active">Hôm nay</button>
-            <button class="tab-btn">Ngày</button>
-            <button class="tab-btn">Tuần</button>
-          </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar p-0">
+            <h4 class="text-center py-3">HỒ SƠ Y TẾ</h4>
+            <div class="px-3 mb-3">
+                <input type="text" class="form-control custom-search" placeholder="Tìm kiếm">
+            </div>
+            <a href="tongquan.html" id="tongquanLink">Tổng quan</a>
+            <a href="hosobenhnhan.html">Hồ sơ bệnh nhân</a>
+            <a href="hosobacsi.html">Hồ sơ bác sĩ</a>
+            <a href="lichkham.html">Lịch khám</a>
+            <a href="donthuoc.html" class="active">Đơn thuốc</a>
+            <a href="tracuu.html">Tra cứu</a>
+            <a href="#">Cài đặt</a>
         </div>
 
-        <!-- Bảng dữ liệu -->
-        <table>
-          <thead>
-            <tr>
-              <th>Mã đơn thuốc</th>
-              <th>Tên bệnh nhân</th>
-              <th>Ngày</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Ocvdhv1245</td>
-              <td>Nhật Hạ</td>
-              <td>06/04/2025</td>
-              <td><a href="kiemtra.html" class="view-btn">Xem đơn thuốc</a></td>
-            </tr>            
-          </tbody>
-        </table>
-      </div>
+        <div class="col-md-10 main-content p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><strong>Đơn thuốc</strong></h4>
+                <div>
+                    <button class="btn btn-success btn-sm">Update Now!</button>
+                    <span class="ms-3">🔔</span>
+                    <img src="https://teddy.vn/wp-content/uploads/2024/12/babythree-v1-2.jpg" class="rounded-circle ms-2" alt="avatar" width="20px">
+                    <span class="ms-1">Ngoc Anh</span>
+                </div>
+            </div>
+
+            <div class="prescription-table p-3">
+                <button class="btn btn-primary btn-sm mb-3" id="openModalBtn">Thêm đơn thuốc</button>
+                <table class="table table-bordered table-hover" id="prescriptionTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Mã thuốc</th>
+                            <th>Tên thuốc</th>
+                            <th>Loại thuốc</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Ghi chú</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
-  <script>
-    const tabs = document.querySelectorAll('.tab-btn');
-    tabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
+<div id="prescriptionModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h4>Thêm/Sửa đơn thuốc</h4>
+        <form id="prescriptionForm">
+            <input type="hidden" id="prescriptionId">
+            <div class="mb-3">
+                <label for="tenThuoc" class="form-label">Tên thuốc</label>
+                <input type="text" class="form-control" id="tenThuoc" required>
+            </div>
+             <div class="mb-3">
+                <label for="loaiThuoc" class="form-label">Loại thuốc</label>
+                <select class="form-select" id="loaiThuoc" required>
+                    <option value="">Chọn loại thuốc</option>
+                    <option value="Viên">Viên</option>
+                    <option value="Nước">Nước</option>
+                    <option value="Bột">Bột</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="soLuong" class="form-label">Số lượng</label>
+                <input type="number" class="form-control" id="soLuong" required min="0">
+            </div>
+            <div class="mb-3">
+                <label for="gia" class="form-label">Giá</label>
+                <input type="number" class="form-control" id="gia" required min="0">
+            </div>
+            <div class="mb-3">
+                <label for="ghiChu" class="form-label">Ghi chú</label>
+                <textarea class="form-control" id="ghiChu" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu đơn thuốc</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const modal = document.getElementById("prescriptionModal");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.querySelector(".close-button");
+    const prescriptionForm = document.getElementById("prescriptionForm");
+    const prescriptionTableBody = document.querySelector("#prescriptionTable tbody");
+    const prescriptionIdInput = document.getElementById("prescriptionId");
+    // const maThuocInput = document.getElementById("maThuoc"); // Không cần dòng này nữa
+
+    // Function to generate a unique ID (random string)
+    function generateId() {
+        return Math.random().toString(36).substring(2, 15);
+    }
+
+    // Function to save/update prescription to local storage
+    function savePrescription(prescription) {
+        let prescriptions = localStorage.getItem('prescriptions');
+        prescriptions = prescriptions ? JSON.parse(prescriptions) : [];
+        const existingIndex = prescriptions.findIndex(p => p.id === prescription.id);
+        if (existingIndex > -1) {
+            prescriptions[existingIndex] = prescription; // Update existing
+        } else {
+            prescriptions.push(prescription); // Add new
+        }
+        localStorage.setItem('prescriptions', JSON.stringify(prescriptions));
+    }
+
+    // Function to get all prescriptions from local storage
+    function getPrescriptions() {
+        const prescriptions = localStorage.getItem('prescriptions');
+        return prescriptions ? JSON.parse(prescriptions) : [];
+    }
+
+    // Function to display prescriptions on the table
+    function displayPrescriptions() {
+        prescriptionTableBody.innerHTML = ''; // Clear existing rows
+        const prescriptions = getPrescriptions();
+        prescriptions.forEach(prescription => {
+            const row = prescriptionTableBody.insertRow();
+            row.insertCell().textContent = prescription.maThuoc; // Display the generated ID
+            row.insertCell().textContent = prescription.tenThuoc;
+            row.insertCell().textContent = prescription.loaiThuoc;
+            row.insertCell().textContent = prescription.soLuong;
+            row.insertCell().textContent = prescription.gia;
+            row.insertCell().textContent = prescription.ghiChu || '';
+
+            const actionsCell = row.insertCell();
+            actionsCell.classList.add('text-center');
+
+            const editButton = document.createElement('button');
+            editButton.classList.add('btn', 'btn-sm', 'btn-outline-primary', 'me-2');
+            editButton.textContent = 'Sửa';
+            editButton.addEventListener('click', () => editPrescription(prescription.id));
+            actionsCell.appendChild(editButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('btn', 'btn-sm', 'btn-outline-danger', 'me-2');
+            deleteButton.textContent = 'Xóa';
+            deleteButton.addEventListener('click', () => deletePrescription(prescription.id));
+            actionsCell.appendChild(deleteButton);
+
+            const viewButton = document.createElement('button');
+            viewButton.classList.add('btn', 'btn-sm', 'btn-outline-info');
+            viewButton.textContent = 'Xem chi tiết';
+            viewButton.addEventListener('click', () => viewPrescriptionDetails(prescription));
+            actionsCell.appendChild(viewButton);
+        });
+    }
+
+    // Function to populate the modal form for editing
+    function editPrescription(id) {
+        const prescription = getPrescriptions().find(p => p.id === id);
+        if (prescription) {
+            prescriptionIdInput.value = prescription.id;
+            const maThuocValue = prescription.maThuoc; // Lấy giá trị Mã thuốc để hiển thị (không cho sửa)
+            // Không cần set giá trị cho maThuocInput nữa vì nó đã bị xóa
+            document.getElementById('tenThuoc').value = prescription.tenThuoc;
+            document.getElementById('loaiThuoc').value = prescription.loaiThuoc;
+            document.getElementById('soLuong').value = prescription.soLuong;
+            document.getElementById('gia').value = prescription.gia;
+            document.getElementById('ghiChu').value = prescription.ghiChu || '';
+            modal.style.display = "block";
+        }
+    }
+
+    // Function to delete a prescription
+    function deletePrescription(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa đơn thuốc này?')) {
+            let prescriptions = getPrescriptions().filter(p => p.id !== id);
+            localStorage.setItem('prescriptions', JSON.stringify(prescriptions));
+            displayPrescriptions();
+        }
+    }
+
+    // Function to view prescription details
+    function viewPrescriptionDetails(prescription) {
+        alert(`Chi tiết đơn thuốc:\nMã thuốc: ${prescription.maThuoc}\nTên thuốc: ${prescription.tenThuoc}\nLoại thuốc: ${prescription.loaiThuoc}\nSố lượng: ${prescription.soLuong}\nGiá: ${prescription.gia}\nGhi chú: ${prescription.ghiChu || 'Không có'}`);
+    }
+
+    // Event listeners for modal
+    openModalBtn.onclick = function() {
+        modal.querySelector('h4').textContent = 'Thêm đơn thuốc';
+        prescriptionForm.reset();
+        prescriptionIdInput.value = ''; // Clear ID for adding new
+        modal.style.display = "block";
+    }
+
+    closeModalBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Event listener for form submission (add or edit)
+    prescriptionForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const id = prescriptionIdInput.value || generateId();
+        const maThuoc = id; // Sử dụng ID đã tạo làm Mã thuốc
+        const tenThuoc = document.getElementById('tenThuoc').value;
+        const loaiThuoc = document.getElementById('loaiThuoc').value;
+        const soLuong = parseInt(document.getElementById('soLuong').value);
+        const gia = parseInt(document.getElementById('gia').value);
+        const ghiChu = document.getElementById('ghiChu').value;
+
+        if (isNaN(soLuong) || isNaN(gia)) {
+            alert('Vui lòng nhập số hợp lệ cho Số lượng và Giá.');
+            return;
+        }
+
+        const newPrescription = {
+            id: id,
+            maThuoc: maThuoc,
+            tenThuoc: tenThuoc,
+            loaiThuoc: loaiThuoc,
+            soLuong: soLuong,
+            gia: gia,
+            ghiChu: ghiChu
+        };
+
+        savePrescription(newPrescription);
+        displayPrescriptions(); // Update the table on the current page
+        modal.style.display = "none"; // Close the modal
+        prescriptionForm.reset(); // Reset the form
     });
-  </script>
 
+    // Load and display prescriptions on page load
+    displayPrescriptions();
+</script>
 </body>
 </html>

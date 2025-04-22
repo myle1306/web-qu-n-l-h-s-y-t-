@@ -2,274 +2,281 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hồ sơ bệnh nhân</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: "Segoe UI", sans-serif;
-      display: flex;
-      height: 100vh;
-      background-color: #f5f5f5;
-    }
-    /* Sidebar */
-    .sidebar {
-      width: 240px;
-      background-color: #0f2c5c;
-      color: white;
-      padding: 20px;
-    }
-    .sidebar h1 {
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
-    .sidebar .search {
-      background-color: #0d234b;
-      padding: 8px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
-    .sidebar .search input {
-      background: transparent;
-      border: none;
-      color: white;
-      outline: none;
-      width: 100%;
-      padding: 5px;
-    }
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 16px 0;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .nav-item:hover {
-      text-decoration: underline;
-    }
+  background-color: #f8f9fa;
+}
 
-    /* Main layout */
-    .main-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+.sidebar {
+  background-color: #0a2a53;
+  min-height: 100vh;
+  color: white;
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: white;
-      padding: 10px 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    .topbar .left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .topbar .left i {
-      font-size: 20px;
-      cursor: pointer;
-    }
-    .topbar .update-btn {
-      background: #b0f5c3;
-      padding: 6px 14px;
-      border-radius: 4px;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-    }
-    .topbar .avatar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .topbar .avatar img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-    }
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
 
-    .content {
-      display: flex;
-      padding: 20px;
-      gap: 20px;
-      overflow: auto;
-    }
+.sidebar a:hover,
+.active {
+  background-color: #183f73;
+}
 
-    .main {
-      flex: 1;
-    }
+.custom-search {
+  background-color: #08254b;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
 
-    .main h2 {
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
+.custom-search::placeholder {
+  color: #ccc;
+}
 
-    .search-box input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      font-size: 15px;
-    }
+.info-card {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: white;
+}
 
-    h3 {
-      margin: 20px 0 10px;
-    }
+.info-title {
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    table {
-      width: 100%;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-
-    .info-panel {
-      width: 360px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .info-panel h3 {
-      margin-bottom: 16px;
-      font-size: 22px;
-    }
-
-    .info-line {
-      margin-bottom: 6px;
-    }
-
-    .info-line span {
-      font-weight: bold;
-      display: inline-block;
-      width: 130px;
-    }
-
-    .info-panel h4 {
-      margin: 20px 0 10px;
-    }
-
-    ul {
-      margin-left: 20px;
-    }
-
-    p {
-      margin-top: 6px;
-    }
-    
-    a {
-      color: white;
-      text-decoration: none;
-    }
-    
+.patient-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
   </style>
 </head>
 <body>
-
-  <div class="sidebar">
-    <h1>HỒ SƠ Y TẾ</h1>
-    <div class="search">
-      <input type="text" placeholder="Tìm kiếm">
-    </div>
-    <a href="tongquan.html" class="nav-item">📄 Tổng quan</a>
-      <a href="hosobenhnhan.html" class="nav-item">👤 Hồ sơ bệnh nhân</a>
-      <a href="lichkham.html" class="nav-item">📅 Lịch khám</a>
-      <a href="donthuoc.html" class="nav-item">📘 Đơn thuốc</a>
-      <a href="tracuu.html" class="nav-item">🔍 Tra cứu</a>
-    
-      <a href="/setting/setting.html" class="nav-item">⚙️ Cài đặt</a>
-      <a href="quanlynguoidung.html" class="nav-item"> Quản lý người dùng</a>
-  </div>
-
-  <div class="main-container">
-    <div class="topbar">
-      <div class="left">
-        <i>☰</i>
-        <button class="update-btn">Update Now !</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar p-0">
+      <h4 class="text-center py-3">HỒ SƠ Y TẾ</h4>
+      <div class="px-3 mb-3">
+        <input type="text" class="form-control custom-search" placeholder="Tìm kiếm" id="searchInput">
       </div>
-      <div class="avatar">
-        <span>🔔</span>
-        <span>Ngọc Ánh</span>
-      </div>
+      <a href="tongquan.html">Tổng quan</a>
+      <a href="hosobenhnhan.html" class="active">Hồ sơ bệnh nhân</a>
+      <a href="hosobacsi.html">Hồ sơ bác sĩ</a>
+      <a href="lichkham.html">Lịch khám</a>
+      <a href="donthuoc.html">Đơn thuốc</a>
+      <a href="tracuu.html">Tra cứu</a>
+      <a href="#">Cài đặt</a>
     </div>
 
-    <div class="content">
-      <div class="main">
-        <h2>Hồ sơ bệnh nhân</h2>
-        <div class="search-box">
-          <input type="text" placeholder="Tìm kiếm tên hoặc ID">
+    <div class="col-md-10 p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4><strong>Hồ sơ bệnh nhân</strong></h4>
+        <div>
+          <button class="btn btn-success btn-sm">Update Now!</button>
+          <span class="ms-3">🔔</span>
+          <img src="https://teddy.vn/wp-content/uploads/2024/12/babythree-v1-2.jpg" class="rounded-circle ms-2" alt="avatar" width="20px">
+          <span class="ms-1">Ngoc Anh</span>
         </div>
-
-        <h3>Bệnh nhân</h3>
-        <table>
-          <tr><th>Tên</th><th>ID</th><th>Ngày sinh</th><th>Địa chỉ</th></tr>
-          <tr><td>Nhật Hạ</td><td>Ocb1234</td><td>13/2/2000</td><td>Hòa Minh, Đà Nẵng</td></tr>
-        </table>
-
-        <h3>Bệnh nhân đang điều trị</h3>
-        <table>
-          <tr><th>Tên</th><th>ID</th><th>Ngày sinh</th><th>Địa chỉ</th></tr>
-          <tr><td>Nhật Hạ</td><td>Ocb1234</td><td>13/2/2000</td><td>Hòa Minh, Đà Nẵng</td></tr>
-        </table>
       </div>
 
-      <div class="info-panel">
-        <h3>Nhật Hạ</h3>
-        <table>
-          <tr><td><strong>ID bệnh nhân:</strong></td><td>Ocb1234</td></tr>
-          <tr><td><strong>Giới tính:</strong></td><td>Nữ</td></tr>
-          <tr><td><strong>Ngày sinh:</strong></td><td>13/2/2000</td></tr>
-          <tr><td><strong>Email:</strong></td><td>bcvadhj@gmail.com</td></tr>
-          <tr><td><strong>SĐT:</strong></td><td>1234567891</td></tr>
-          <tr><td><strong>Địa chỉ:</strong></td><td>123 Phan Chu Chinh</td></tr>
-          <tr><td><strong>Mã số y tế:</strong></td><td>123456789023</td></tr>
-          <tr><td><strong>Nghề nghiệp:</strong></td><td>Kế toán</td></tr>
-          <tr><td><strong>Nhóm máu:</strong></td><td>O</td></tr>
-          <tr><td><strong>Cân nặng:</strong></td><td>42kg</td></tr>
-          <tr><td><strong>Chiều cao:</strong></td><td>1m60</td></tr>
-          <tr><td><strong>Tiền sử gia đình:</strong></td><td>Không</td></tr>
-          <tr><td><strong>Dị ứng thuốc:</strong></td><td>Không</td></tr>
-          <tr><td colspan="2"><strong>Lịch sử bệnh:</strong><br>
-            <ul style="margin: 6px 0 0 20px;">
-              <li>Tăng huyết áp</li>
-              <li>Viêm dạ dày cấp</li>
-            </ul>
-          </td></tr>
-          <tr>
-            <td colspan="2">
-              <strong>Lịch sử khám:</strong>
-              <table style="width: 100%; margin-top: 10px; border: 1px solid #ddd; border-collapse: collapse;">
-                <tr style="background: #f9f9f9;"><th style="padding: 6px;">Ngày</th><th>Giờ</th><th>Chẩn đoán</th></tr>
-                <tr><td style="padding: 6px;">5/2/2025</td><td>14h30</td><td>Tăng huyết áp, viêm dạ dày cấp</td></tr>
-                <tr><td style="padding: 6px;">4/3/2025</td><td>8h30</td><td>Tăng huyết áp</td></tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <strong>Đơn thuốc:</strong><br>
-              hydrochlorothiazide: sáng 1 viên
-            </td>
-          </tr>
-        </table>
-      </div>      
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Tìm kiếm tên hoặc ID hoặc tên khoa" id="searchBar" oninput="searchPatient()">
+      </div>
+      <div class="col-md-10 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <button class="btn btn-primary btn-sm" onclick="openForm()">+ Thêm bệnh nhân</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="patientList" class="row">
+        <!-- Danh sách bệnh nhân hiển thị ở đây -->
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Modal thêm/sửa bệnh nhân -->
+<div class="modal fade" id="patientModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm bệnh nhân</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="patientForm">
+          <input type="hidden" id="patientId">
+          <div class="row g-3">
+            <div class="col-md-6"><label>Tên:</label><input type="text" class="form-control" id="name" required></div>
+            <div class="col-md-6"><label>Ngày sinh:</label><input type="date" class="form-control" id="dob"></div>
+            <div class="col-md-6"><label>Giới tính:</label><select class="form-control" id="gender"><option>Nam</option><option>Nữ</option></select></div>
+            <div class="col-md-6"><label>Email:</label><input type="email" class="form-control" id="email"></div>
+            <div class="col-md-6"><label>Ảnh đại diện (URL):</label><input type="text" class="form-control" id="avatar"></div>
+            <div class="col-md-6"><label>Địa chỉ:</label><input type="text" class="form-control" id="address"></div>
+            <div class="col-md-6"><label>Triệu chứng:</label><input type="text" class="form-control" id="symptom"></div>
+            <div class="col-md-6"><label>Trạng thái:</label><select class="form-control" id="status"><option>Đang điều trị</option><option>Xuất viện</option></select></div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button class="btn btn-success" onclick="savePatient()">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal chi tiết bệnh nhân -->
+<div class="modal fade" id="patientDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chi tiết bệnh nhân</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="patientDetailContent">
+        <!-- Nội dung chi tiết bệnh nhân sẽ được render bằng JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+  function generateId() {
+    return 'BN' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+  }
+
+  function openForm(id = null) {
+    const modal = new bootstrap.Modal(document.getElementById('patientModal'));
+    if (id) {
+      const p = patients.find(pt => pt.id === id);
+      document.getElementById('patientId').value = p.id;
+      document.getElementById('name').value = p.name;
+      document.getElementById('dob').value = p.dob;
+      document.getElementById('gender').value = p.gender;
+      document.getElementById('email').value = p.email;
+      document.getElementById('avatar').value = p.avatar;
+      document.getElementById('address').value = p.address;
+      document.getElementById('symptom').value = p.symptom;
+      document.getElementById('status').value = p.status;
+    } else {
+      document.getElementById('patientForm').reset();
+      document.getElementById('patientId').value = '';
+    }
+    modal.show();
+  }
+
+  function savePatient() {
+    const id = document.getElementById('patientId').value || generateId();
+    const patient = {
+      id,
+      name: document.getElementById('name').value,
+      dob: document.getElementById('dob').value,
+      gender: document.getElementById('gender').value,
+      email: document.getElementById('email').value,
+      avatar: document.getElementById('avatar').value,
+      address: document.getElementById('address').value,
+      symptom: document.getElementById('symptom').value,
+      status: document.getElementById('status').value,
+    };
+    const index = patients.findIndex(p => p.id === id);
+    if (index > -1) patients[index] = patient;
+    else patients.push(patient);
+
+    localStorage.setItem("patients", JSON.stringify(patients));
+    renderPatients();
+    bootstrap.Modal.getInstance(document.getElementById('patientModal')).hide();
+  }
+
+  function deletePatient(id) {
+    if (confirm("Bạn có chắc muốn xóa bệnh nhân này?")) {
+      patients = patients.filter(p => p.id !== id);
+      localStorage.setItem("patients", JSON.stringify(patients));
+      renderPatients();
+    }
+  }
+
+  function searchPatient() {
+    const keyword = document.getElementById('searchBar').value.toLowerCase();
+    const filtered = patients.filter(p =>
+      p.name.toLowerCase().includes(keyword) ||
+      p.id.toLowerCase().includes(keyword)
+    );
+    renderPatients(filtered);
+  }
+
+  function showPatientDetail(id) {
+    const p = patients.find(pt => pt.id === id);
+    const content = `
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img src="${p.avatar}" class="img-fluid rounded-circle mb-3" width="150">
+          <h5>${p.name}</h5>
+          <p><strong>ID:</strong> ${p.id}</p>
+        </div>
+        <div class="col-md-8">
+          <p><strong>Ngày sinh:</strong> ${p.dob}</p>
+          <p><strong>Giới tính:</strong> ${p.gender}</p>
+          <p><strong>Email:</strong> ${p.email}</p>
+          <p><strong>Địa chỉ:</strong> ${p.address}</p>
+          <p><strong>Triệu chứng:</strong> ${p.symptom}</p>
+          <p><strong>Trạng thái:</strong> ${p.status}</p>
+        </div>
+      </div>
+    `;
+    document.getElementById('patientDetailContent').innerHTML = content;
+    const modal = new bootstrap.Modal(document.getElementById('patientDetailModal'));
+    modal.show();
+  }
+
+  function renderPatients(list = patients) {
+    const container = document.getElementById('patientList');
+    container.innerHTML = '';
+    list.forEach(p => {
+      container.innerHTML += `
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <img src="${p.avatar}" class="patient-img me-2">
+                <strong>${p.name}</strong>
+              </div>
+              <p class="mb-1"><strong>ID:</strong> ${p.id}</p>
+              <p class="mb-1"><strong>Trạng thái:</strong> ${p.status}</p>
+              <p class="mb-1"><strong>Triệu chứng:</strong> ${p.symptom}</p>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-sm btn-outline-info" onclick="showPatientDetail('${p.id}')">Chi tiết</button>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-primary" onclick="openForm('${p.id}')">Sửa</button>
+                  <button class="btn btn-sm btn-outline-danger" onclick="deletePatient('${p.id}')">Xóa</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  renderPatients();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
